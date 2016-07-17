@@ -1,5 +1,6 @@
 package pl.dors.radek.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -17,6 +18,7 @@ public class GameplayScreen extends AbstractScreen {
     public GameplayScreen(MattTutorial game) {
         super(game);
         init();
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -33,15 +35,16 @@ public class GameplayScreen extends AbstractScreen {
         playerButton.setY(170);
         playerButton.setDebug(MattTutorial.DEBUG_MODE);
 
-        stage.addActor(playerButton);
-
         playerButton.addListener(new ClickListener() {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                player.reactOnClick();
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
+
+        stage.addActor(playerButton);
     }
 
     private void initPlayer() {
