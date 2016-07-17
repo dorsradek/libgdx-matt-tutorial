@@ -26,6 +26,8 @@ public abstract class AbstractScreen implements Screen {
         spriteBatch = new SpriteBatch();
     }
 
+    protected abstract void init();
+
     private void createCamera() {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, MattTutorial.WIDTH, MattTutorial.HEIGHT);

@@ -15,7 +15,8 @@ public class GameplayScreen extends AbstractScreen {
         init();
     }
 
-    private void init() {
+    @Override
+    protected void init() {
         initPlayer();
     }
 
