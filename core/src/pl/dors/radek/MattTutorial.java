@@ -7,8 +7,10 @@ public class MattTutorial extends Game {
 
     public static final int WIDTH = 480;
     public static final int HEIGHT = 700;
+    public static final boolean DEBUG_MODE = true;
 
     private boolean paused;
+
 
     @Override
     public void create() {
