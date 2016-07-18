@@ -16,6 +16,7 @@ public class GameplayScreen extends AbstractScreen {
 
     private Player player;
     private Button playerButton;
+    private Button resetScoreButton;
     private Label scoreLabel;
 
     public GameplayScreen(MattTutorial game) {
@@ -28,7 +29,28 @@ public class GameplayScreen extends AbstractScreen {
     protected void init() {
         initPlayer();
         initPlayerButton();
+        initResetScoreButton();
         initScoreLabel();
+    }
+
+    private void initResetScoreButton() {
+        resetScoreButton = new Button(new Button.ButtonStyle());
+        resetScoreButton.setWidth(100);
+        resetScoreButton.setHeight(100);
+        resetScoreButton.setX(330);
+        resetScoreButton.setY(560);
+        resetScoreButton.setDebug(MattTutorial.DEBUG_MODE);
+
+        stage.addActor(resetScoreButton);
+
+        resetScoreButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                game.resetGameScore();
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
     }
 
     private void initScoreLabel() {
@@ -37,6 +59,7 @@ public class GameplayScreen extends AbstractScreen {
         scoreLabel = new Label("", labelStyle);
         scoreLabel.setX(20);
         scoreLabel.setY(650);
+
         stage.addActor(scoreLabel);
     }
 

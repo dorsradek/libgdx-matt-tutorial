@@ -5,8 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import pl.dors.radek.screens.SplashScreen;
 
-import static com.badlogic.gdx.graphics.g2d.ParticleEmitter.SpawnShape.point;
-
 public class MattTutorial extends Game {
 
     public final static String PREFS_NAME = "pl.dors.radek.matt.tutorial";
@@ -38,6 +36,15 @@ public class MattTutorial extends Game {
 
     public void addPoint() {
         points++;
+        updatePointInPrefs();
+    }
+
+    public void resetGameScore() {
+        points = 0;
+        updatePointInPrefs();
+    }
+
+    private void updatePointInPrefs() {
         prefs.putInteger(PREFS_SCORE, points);
         prefs.flush();
     }
