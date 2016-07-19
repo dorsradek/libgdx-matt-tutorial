@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import pl.dors.radek.MattTutorial;
 import pl.dors.radek.entities.Player;
+import pl.dors.radek.ui.IClickCallback;
+import pl.dors.radek.ui.PlayerButton;
 
 /**
  * Created by rdors on 2016-07-17.
@@ -64,20 +66,11 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initPlayerButton() {
-        playerButton= new Button(new Button.ButtonStyle());
-        playerButton.setWidth(460);
-        playerButton.setHeight(360);
-        playerButton.setX(10);
-        playerButton.setY(170);
-        playerButton.setDebug(MattTutorial.DEBUG_MODE);
-
-        playerButton.addListener(new ClickListener() {
-
+        playerButton = new PlayerButton(new IClickCallback() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            public void onClick() {
                 player.reactOnClick();
                 game.addPoint();
-                return super.touchDown(event, x, y, pointer, button);
             }
         });
 
