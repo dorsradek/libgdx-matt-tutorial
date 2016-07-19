@@ -1,16 +1,12 @@
 package pl.dors.radek.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import pl.dors.radek.MattTutorial;
 import pl.dors.radek.entities.Player;
 import pl.dors.radek.ui.IClickCallback;
 import pl.dors.radek.ui.PlayerButton;
 import pl.dors.radek.ui.ResetScoreButton;
+import pl.dors.radek.ui.ScoreLabel;
 
 /**
  * Created by rdors on 2016-07-17.
@@ -18,9 +14,9 @@ import pl.dors.radek.ui.ResetScoreButton;
 public class GameplayScreen extends AbstractScreen {
 
     private Player player;
-    private Button playerButton;
-    private Button resetScoreButton;
-    private Label scoreLabel;
+    private PlayerButton playerButton;
+    private ResetScoreButton resetScoreButton;
+    private ScoreLabel scoreLabel;
 
     public GameplayScreen(MattTutorial game) {
         super(game);
@@ -46,15 +42,6 @@ public class GameplayScreen extends AbstractScreen {
         stage.addActor(resetScoreButton);
     }
 
-    private void initScoreLabel() {
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = new BitmapFont();
-        scoreLabel = new Label("", labelStyle);
-        scoreLabel.setX(20);
-        scoreLabel.setY(650);
-
-        stage.addActor(scoreLabel);
-    }
 
     private void initPlayerButton() {
         playerButton = new PlayerButton(new IClickCallback() {
@@ -64,8 +51,12 @@ public class GameplayScreen extends AbstractScreen {
                 game.addPoint();
             }
         });
-
         stage.addActor(playerButton);
+    }
+
+    private void initScoreLabel() {
+        scoreLabel = new ScoreLabel();
+        stage.addActor(scoreLabel);
     }
 
     private void initPlayer() {
