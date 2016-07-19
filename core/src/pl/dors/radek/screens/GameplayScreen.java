@@ -10,6 +10,7 @@ import pl.dors.radek.MattTutorial;
 import pl.dors.radek.entities.Player;
 import pl.dors.radek.ui.IClickCallback;
 import pl.dors.radek.ui.PlayerButton;
+import pl.dors.radek.ui.ResetScoreButton;
 
 /**
  * Created by rdors on 2016-07-17.
@@ -36,23 +37,13 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initResetScoreButton() {
-        resetScoreButton = new Button(new Button.ButtonStyle());
-        resetScoreButton.setWidth(100);
-        resetScoreButton.setHeight(100);
-        resetScoreButton.setX(330);
-        resetScoreButton.setY(560);
-        resetScoreButton.setDebug(MattTutorial.DEBUG_MODE);
-
-        stage.addActor(resetScoreButton);
-
-        resetScoreButton.addListener(new ClickListener() {
+        resetScoreButton = new ResetScoreButton(new IClickCallback() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
+            public void onClick() {
                 game.resetGameScore();
-                return super.touchDown(event, x, y, pointer, button);
             }
         });
+        stage.addActor(resetScoreButton);
     }
 
     private void initScoreLabel() {
