@@ -13,7 +13,6 @@ import pl.dors.radek.MattTutorial;
  */
 public class FlyingObject extends Image {
 
-
     public enum FlyingObjectType {
         MONEY, PASSIVE;
     }
