@@ -1,6 +1,5 @@
 package pl.dors.radek.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.dors.radek.MattTutorial;
@@ -33,7 +32,6 @@ public class GameplayScreen extends AbstractScreen {
         initPlayerButton();
         initResetScoreButton();
         initScoreLabel();
-        Gdx.input.setInputProcessor(stage);
     }
 
     private void initBackground() {
