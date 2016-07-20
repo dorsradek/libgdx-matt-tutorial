@@ -39,6 +39,15 @@ public class MattTutorial extends Game {
         updatePointInPrefs();
     }
 
+    public void addPoints(int points) {
+        this.points += points;
+        updatePointInPrefs();
+    }
+
+    public void addPassiveIncome() {
+        //TODO: implement
+    }
+
     public void resetGameScore() {
         points = 0;
         updatePointInPrefs();
