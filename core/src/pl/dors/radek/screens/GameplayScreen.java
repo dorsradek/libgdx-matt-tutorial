@@ -3,6 +3,7 @@ package pl.dors.radek.screens;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.dors.radek.MattTutorial;
+import pl.dors.radek.entities.FlyingObject;
 import pl.dors.radek.entities.Player;
 import pl.dors.radek.ui.IClickCallback;
 import pl.dors.radek.ui.PlayerButton;
@@ -19,6 +20,7 @@ public class GameplayScreen extends AbstractScreen {
     private ResetScoreButton resetScoreButton;
     private ScoreLabel scoreLabel;
     private Image gameplayImage;
+    private FlyingObject flyingObject1;
 
     public GameplayScreen(MattTutorial game) {
         super(game);
@@ -32,6 +34,13 @@ public class GameplayScreen extends AbstractScreen {
         initPlayerButton();
         initResetScoreButton();
         initScoreLabel();
+        initFlyingObjects();
+    }
+
+    private void initFlyingObjects() {
+        flyingObject1 = new FlyingObject(FlyingObject.MONEY);
+        stage.addActor(flyingObject1);
+        flyingObject1.flyLikeHell();
     }
 
     private void initBackground() {
