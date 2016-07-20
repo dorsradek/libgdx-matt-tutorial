@@ -1,5 +1,9 @@
 package pl.dors.radek.ui;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import pl.dors.radek.MattTutorial;
 
 /**
@@ -8,7 +12,7 @@ import pl.dors.radek.MattTutorial;
 public class ResetScoreButton extends AbstractButton {
 
     public ResetScoreButton(final IClickCallback callback) {
-        super(new ButtonStyle());
+        super(prepareResetButtonStyle());
         init(callback);
     }
 
@@ -20,5 +24,14 @@ public class ResetScoreButton extends AbstractButton {
         this.setDebug(MattTutorial.DEBUG_MODE);
 
         initListener(callback);
+    }
+
+    private static Button.ButtonStyle prepareResetButtonStyle() {
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("ui-red.atlas"));
+        Skin skin = new Skin(atlas);
+        Button.ButtonStyle buttonStyle = new Button.ButtonStyle();
+        buttonStyle.up = skin.getDrawable("button_02");
+        buttonStyle.down = skin.getDrawable("button_03");
+        return buttonStyle;
     }
 }
