@@ -2,6 +2,7 @@ package pl.dors.radek.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.dors.radek.MattTutorial;
 import pl.dors.radek.entities.Player;
 import pl.dors.radek.ui.IClickCallback;
@@ -18,7 +19,7 @@ public class GameplayScreen extends AbstractScreen {
     private PlayerButton playerButton;
     private ResetScoreButton resetScoreButton;
     private ScoreLabel scoreLabel;
-    private Texture gameplayImage;
+    private Image gameplayImage;
 
     public GameplayScreen(MattTutorial game) {
         super(game);
@@ -27,12 +28,17 @@ public class GameplayScreen extends AbstractScreen {
 
     @Override
     protected void init() {
-        gameplayImage = new Texture("bg.png");
+        initBackground();
         initPlayer();
         initPlayerButton();
         initResetScoreButton();
         initScoreLabel();
         Gdx.input.setInputProcessor(stage);
+    }
+
+    private void initBackground() {
+        gameplayImage = new Image(new Texture("bg.png"));
+        stage.addActor(gameplayImage);
     }
 
     private void initResetScoreButton() {
@@ -71,10 +77,6 @@ public class GameplayScreen extends AbstractScreen {
     public void render(float delta) {
         super.render(delta);
         update();
-
-        spriteBatch.begin();
-        spriteBatch.draw(gameplayImage, 0, 0);
-        spriteBatch.end();
 
         spriteBatch.begin();
         stage.draw();
