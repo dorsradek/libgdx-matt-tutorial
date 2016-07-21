@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.dors.radek.MattTutorial;
 import pl.dors.radek.controllers.FlyingObjectController;
 import pl.dors.radek.entities.Player;
+import pl.dors.radek.service.PassiveIncomeService;
 import pl.dors.radek.ui.IClickCallback;
 import pl.dors.radek.ui.PlayerButton;
 import pl.dors.radek.ui.ResetScoreButton;
@@ -21,6 +22,7 @@ public class GameplayScreen extends AbstractScreen {
     private ScoreLabel scoreLabel;
     private Image gameplayImage;
     private FlyingObjectController flyingObjectController;
+    private PassiveIncomeService passiveIncomeService;
 
     public GameplayScreen(MattTutorial game) {
         super(game);
@@ -36,6 +38,27 @@ public class GameplayScreen extends AbstractScreen {
         initScoreLabel();
         initFlyingStuffController();
         startTheMusic();
+        initPassiveIncomeService();
+    }
+
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+        update();
+
+        spriteBatch.begin();
+        stage.draw();
+        spriteBatch.end();
+    }
+
+    private void update() {
+        scoreLabel.setText("Score: " + game.getScoreService().getPoints());
+        stage.act();
+    }
+
+    private void initPassiveIncomeService() {
+        passiveIncomeService = new PassiveIncomeService(game.getScoreService());
+        passiveIncomeService.start();
     }
 
     private void startTheMusic() {
@@ -84,18 +107,4 @@ public class GameplayScreen extends AbstractScreen {
         stage.addActor(player);
     }
 
-    @Override
-    public void render(float delta) {
-        super.render(delta);
-        update();
-
-        spriteBatch.begin();
-        stage.draw();
-        spriteBatch.end();
-    }
-
-    private void update() {
-        scoreLabel.setText("Score: " + game.getScoreService().getPoints());
-        stage.act();
-    }
 }

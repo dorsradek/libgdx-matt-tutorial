@@ -66,4 +66,8 @@ public class ScoreService {
     public int getPoints() {
         return points;
     }
+
+    public int getPassiveIncome() {
+        return passiveIncome;
+    }
 }
