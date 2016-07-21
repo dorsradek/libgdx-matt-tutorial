@@ -41,6 +41,8 @@ public class FlyingObject extends Image {
         this.setOrigin(WIDTH / 2, HEIGHT / 2);
         this.setSize(WIDTH, HEIGHT);
 
+        playSpawnSound();
+
         startingX = MathUtils.randomBoolean() ? STARTING_X_1 : STARTING_X_2;
         this.setPosition(startingX, STARTING_Y);
 
@@ -51,6 +53,12 @@ public class FlyingObject extends Image {
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
+    }
+
+    private void playSpawnSound() {
+        if (FlyingObjectType.MONEY.equals(type)) {
+            game.getSoundService().playMoneySound();
+        }
     }
 
     private void reactOnClick() {
