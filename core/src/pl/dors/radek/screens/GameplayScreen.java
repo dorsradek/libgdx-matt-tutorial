@@ -6,10 +6,7 @@ import pl.dors.radek.MattTutorial;
 import pl.dors.radek.controllers.FlyingObjectController;
 import pl.dors.radek.entities.Player;
 import pl.dors.radek.service.PassiveIncomeService;
-import pl.dors.radek.ui.IClickCallback;
-import pl.dors.radek.ui.PlayerButton;
-import pl.dors.radek.ui.ResetScoreButton;
-import pl.dors.radek.ui.ScoreLabel;
+import pl.dors.radek.ui.*;
 
 /**
  * Created by rdors on 2016-07-17.
@@ -19,7 +16,7 @@ public class GameplayScreen extends AbstractScreen {
     private Player player;
     private PlayerButton playerButton;
     private ResetScoreButton resetScoreButton;
-    private ScoreLabel scoreLabel;
+    private GameLabel gameLabel;
     private Image gameplayImage;
     private FlyingObjectController flyingObjectController;
     private PassiveIncomeService passiveIncomeService;
@@ -39,6 +36,15 @@ public class GameplayScreen extends AbstractScreen {
         initFlyingStuffController();
         startTheMusic();
         initPassiveIncomeService();
+        initPassiveIncomeInfoDialog();
+    }
+
+    private void initPassiveIncomeInfoDialog() {
+        if (passiveIncomeService.getPointToAdd() > 0) {
+            BasicDialog dialog = new BasicDialog();
+            stage.addActor(dialog);
+            dialog.initContent("Passive income gained: " + passiveIncomeService.getPointToAdd());
+        }
     }
 
     @Override
@@ -55,11 +61,10 @@ public class GameplayScreen extends AbstractScreen {
     public void pause() {
         super.pause();
         game.getScoreService().saveCurrentGameState();
-        //TODO: make flush of score service always on screen pause()
     }
 
     private void update() {
-        scoreLabel.setText("Score: " + game.getScoreService().getPoints());
+        gameLabel.setText("Score: " + game.getScoreService().getPoints());
         stage.act();
     }
 
@@ -105,8 +110,8 @@ public class GameplayScreen extends AbstractScreen {
     }
 
     private void initScoreLabel() {
-        scoreLabel = new ScoreLabel();
-        stage.addActor(scoreLabel);
+        gameLabel = new GameLabel();
+        stage.addActor(gameLabel);
     }
 
     private void initPlayer() {

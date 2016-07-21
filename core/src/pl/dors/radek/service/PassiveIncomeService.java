@@ -14,6 +14,7 @@ public class PassiveIncomeService {
     private final static int INFINITE = Integer.MAX_VALUE;
 
     private ScoreService scoreService;
+    private int pointToAdd;
 
     public PassiveIncomeService(ScoreService scoreService) {
         this.scoreService = scoreService;
@@ -40,8 +41,12 @@ public class PassiveIncomeService {
 
     private void addPointsBasedOnPassedTime(long seconds) {
         if (seconds > 0) {
-            int points = (int) seconds * scoreService.getPassiveIncome() / 5;
-            scoreService.addPoints(points);
+            pointToAdd = (int) seconds * scoreService.getPassiveIncome() / 5;
+            scoreService.addPoints(pointToAdd);
         }
+    }
+
+    public int getPointToAdd() {
+        return pointToAdd;
     }
 }
