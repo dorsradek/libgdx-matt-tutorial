@@ -10,10 +10,12 @@ public class ScoreService {
 
     public final static String PREFS_NAME = "pl.dors.radek.matt.tutorial";
     public final static String PREFS_SCORE = "pl.dors.radek.matt.tutorial.score";
-
-    private int points;
+    public final static String PREFS_PASSIVE_INCOME = "pl.dors.radek.matt.tutorial.passiveIncome";
 
     private Preferences prefs;
+
+    private int points;
+    private int passiveIncome;
 
     public ScoreService() {
         init();
@@ -22,33 +24,42 @@ public class ScoreService {
     private void init() {
         prefs = Gdx.app.getPreferences(PREFS_NAME);
         loadScore();
+        loadPassiveIncome();
     }
 
     private void loadScore() {
         points = prefs.getInteger(PREFS_SCORE);
     }
 
+
+    private void loadPassiveIncome() {
+        passiveIncome = prefs.getInteger(PREFS_PASSIVE_INCOME);
+    }
+
     public void addPoint() {
         points++;
-        updatePointInPrefs();
+        updateSavedScoreAndPassiveIncomeInPrefs();
     }
 
     public void addPoints(int points) {
         this.points += points;
-        updatePointInPrefs();
+        updateSavedScoreAndPassiveIncomeInPrefs();
     }
 
     public void addPassiveIncome() {
-        //TODO: implement
+        passiveIncome++;
+        updateSavedScoreAndPassiveIncomeInPrefs();
     }
 
     public void resetGameScore() {
         points = 0;
-        updatePointInPrefs();
+        passiveIncome = 0;
+        updateSavedScoreAndPassiveIncomeInPrefs();
     }
 
-    private void updatePointInPrefs() {
+    private void updateSavedScoreAndPassiveIncomeInPrefs() {
         prefs.putInteger(PREFS_SCORE, points);
+        prefs.putInteger(PREFS_PASSIVE_INCOME, passiveIncome);
         prefs.flush();
     }
 
