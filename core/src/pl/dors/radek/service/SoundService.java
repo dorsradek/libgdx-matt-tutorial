@@ -22,8 +22,8 @@ public class SoundService {
 
     private void init() {
         moneySound = Gdx.audio.newSound(Gdx.files.internal("sound/money1.mp3"));
-        bookSound = Gdx.audio.newSound(Gdx.files.internal("sound/book.mp3"));
-        jumpSound = Gdx.audio.newSound(Gdx.files.internal("sound/jump.mp3"));
+        bookSound = Gdx.audio.newSound(Gdx.files.internal("sound/book.wav"));
+        jumpSound = Gdx.audio.newSound(Gdx.files.internal("sound/jump.wav"));
         pickSound = Gdx.audio.newSound(Gdx.files.internal("sound/pick.mp3"));
         music = Gdx.audio.newMusic(Gdx.files.internal("sound/music.mp3"));
     }
