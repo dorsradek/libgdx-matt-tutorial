@@ -4,8 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by rdors on 2016-07-21.
  */
@@ -29,15 +27,6 @@ public class ScoreService {
         prefs = Gdx.app.getPreferences(PREFS_NAME);
         loadScore();
         loadPassiveIncome();
-        calculateGainedPassiveIncome();
-    }
-
-    private void calculateGainedPassiveIncome() {
-        long savedTimestamp = getSavedTimestamp();
-        if (savedTimestamp > 0 ) {
-            long millisPassed = TimeUtils.timeSinceMillis(savedTimestamp);
-            long seconds = TimeUnit.MILLISECONDS.toSeconds(millisPassed);
-        }
     }
 
     private void loadScore() {
