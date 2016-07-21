@@ -51,6 +51,13 @@ public class GameplayScreen extends AbstractScreen {
         spriteBatch.end();
     }
 
+    @Override
+    public void pause() {
+        super.pause();
+        game.getScoreService().saveCurrentTimestamp();
+        //TODO: make flush of score service always on screen pause()
+    }
+
     private void update() {
         scoreLabel.setText("Score: " + game.getScoreService().getPoints());
         stage.act();

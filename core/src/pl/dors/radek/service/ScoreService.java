@@ -2,6 +2,9 @@ package pl.dors.radek.service;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.utils.TimeUtils;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by rdors on 2016-07-21.
@@ -10,7 +13,8 @@ public class ScoreService {
 
     public final static String PREFS_NAME = "pl.dors.radek.matt.tutorial";
     public final static String PREFS_SCORE = "pl.dors.radek.matt.tutorial.score";
-    public final static String PREFS_PASSIVE_INCOME = "pl.dors.radek.matt.tutorial.passiveIncome";
+    public final static String PREFS_PASSIVE_INCOME = "pl.dors.radek.matt.tutorial.passiveincome";
+    public final static String PREFS_SAVED_TIMESTAMP = "pl.dors.radek.matt.tutorial.savedtimestamp";
 
     private Preferences prefs;
 
@@ -25,6 +29,15 @@ public class ScoreService {
         prefs = Gdx.app.getPreferences(PREFS_NAME);
         loadScore();
         loadPassiveIncome();
+        calculateGainedPassiveIncome();
+    }
+
+    private void calculateGainedPassiveIncome() {
+        long savedTimestamp = getSavedTimestamp();
+        if (savedTimestamp > 0 ) {
+            long millisPassed = TimeUtils.timeSinceMillis(savedTimestamp);
+            long seconds = TimeUnit.MILLISECONDS.toSeconds(millisPassed);
+        }
     }
 
     private void loadScore() {
@@ -69,5 +82,14 @@ public class ScoreService {
 
     public int getPassiveIncome() {
         return passiveIncome;
+    }
+
+    public void saveCurrentTimestamp() {
+        prefs.putLong(PREFS_SAVED_TIMESTAMP, TimeUtils.millis());
+        prefs.flush();
+    }
+
+    public long getSavedTimestamp() {
+        return prefs.getLong(PREFS_SAVED_TIMESTAMP);
     }
 }
