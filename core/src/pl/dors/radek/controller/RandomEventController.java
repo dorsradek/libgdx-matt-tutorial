@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import pl.dors.radek.MattTutorial;
+import pl.dors.radek.ui.BasicDialog;
 
 /**
  * Created by rdors on 2016-07-22.
@@ -49,16 +50,23 @@ public class RandomEventController {
         }
     }
 
-
     private void gainMoneyEvent() {
         game.getScoreService().addPoints(123);
+        triggerDialog("Free money");
     }
 
     private void loseMoneyEvent() {
         game.getScoreService().addPoints(-123);
+        triggerDialog("Pay taxes");
     }
 
     private void gainPassiveIncome() {
         game.getScoreService().addPassiveIncome();
+        triggerDialog("You gained passive income! Yaay!");
+    }
+
+    private void triggerDialog(String text) {
+        BasicDialog dialog = new BasicDialog();
+        dialog.showDialog(stage, text);
     }
 }
