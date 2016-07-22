@@ -1,4 +1,4 @@
-package pl.dors.radek.controllers;
+package pl.dors.radek.controller;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;

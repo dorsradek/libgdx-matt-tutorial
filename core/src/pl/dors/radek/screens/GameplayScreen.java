@@ -3,7 +3,8 @@ package pl.dors.radek.screens;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.dors.radek.MattTutorial;
-import pl.dors.radek.controllers.FlyingObjectController;
+import pl.dors.radek.controller.FlyingObjectController;
+import pl.dors.radek.controller.RandomEventController;
 import pl.dors.radek.entities.Player;
 import pl.dors.radek.service.PassiveIncomeService;
 import pl.dors.radek.ui.*;
@@ -18,8 +19,9 @@ public class GameplayScreen extends AbstractScreen {
     private ResetScoreButton resetScoreButton;
     private GameLabel gameLabel;
     private Image gameplayImage;
-    private FlyingObjectController flyingObjectController;
     private PassiveIncomeService passiveIncomeService;
+    private FlyingObjectController flyingObjectController;
+    private RandomEventController randomEventController;
 
     public GameplayScreen(MattTutorial game) {
         super(game);
@@ -37,6 +39,11 @@ public class GameplayScreen extends AbstractScreen {
         startTheMusic();
         initPassiveIncomeService();
         initPassiveIncomeInfoDialog();
+        initRandomEventController();
+    }
+
+    private void initRandomEventController() {
+        randomEventController = new RandomEventController();
     }
 
     private void initPassiveIncomeInfoDialog() {
