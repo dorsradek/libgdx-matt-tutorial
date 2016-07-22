@@ -42,18 +42,6 @@ public class GameplayScreen extends AbstractScreen {
         initRandomEventController();
     }
 
-    private void initRandomEventController() {
-        randomEventController = new RandomEventController(game);
-    }
-
-    private void initPassiveIncomeInfoDialog() {
-        if (passiveIncomeService.getPointToAdd() > 0) {
-            BasicDialog dialog = new BasicDialog();
-            stage.addActor(dialog);
-            dialog.initContent("Passive income gained: " + passiveIncomeService.getPointToAdd());
-        }
-    }
-
     @Override
     public void render(float delta) {
         super.render(delta);
@@ -73,6 +61,17 @@ public class GameplayScreen extends AbstractScreen {
     private void update() {
         gameLabel.setText("Score: " + game.getScoreService().getPoints());
         stage.act();
+    }
+
+    private void initRandomEventController() {
+        randomEventController = new RandomEventController(this.stage, game);
+    }
+
+    private void initPassiveIncomeInfoDialog() {
+        if (passiveIncomeService.getPointToAdd() > 0) {
+            BasicDialog dialog = new BasicDialog();
+            dialog.showDialog(stage, "Passive income gained: " + passiveIncomeService.getPointToAdd());
+        }
     }
 
     private void initPassiveIncomeService() {

@@ -1,6 +1,7 @@
 package pl.dors.radek.controller;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import pl.dors.radek.MattTutorial;
 
@@ -13,8 +14,10 @@ public class RandomEventController {
     private static final int RANDOM_TICK_INTERVAL = 5;
 
     private MattTutorial game;
+    private Stage stage;
 
-    public RandomEventController(MattTutorial game) {
+    public RandomEventController(Stage stage, MattTutorial game) {
+        this.stage = stage;
         this.game = game;
         init();
     }

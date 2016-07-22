@@ -3,6 +3,7 @@ package pl.dors.radek.ui;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -41,6 +42,12 @@ public class BasicDialog extends Image {
     public void initContent(String text) {
         gameLabel.setText(text);
         this.getStage().addActor(gameLabel);
+    }
+
+    public void showDialog(Stage stage, String text) {
+        stage.addActor(this);
+        gameLabel.setText(text);
+        stage.addActor(gameLabel);
     }
 
     private void fadeOutDialog() {
